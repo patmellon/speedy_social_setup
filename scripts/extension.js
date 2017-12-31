@@ -20,11 +20,6 @@ document.addEventListener("DOMContentLoaded", function() {
 
     var data = [name, email, password];
 
-    if (!data) {
-      document.getElementById("status").textContent = "Invalid text provided";
-      return;
-    }
-
     chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
