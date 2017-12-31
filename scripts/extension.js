@@ -33,4 +33,20 @@ document.addEventListener("DOMContentLoaded", function() {
       });
     });
   });
+
+  var clear = document.getElementById("clear");
+  clear.addEventListener("click", function() {
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("password").value = "";
+
+    data = ["", "", ""];
+
+    chrome.storage.sync.set({ data: data }, function() {
+      if (chrome.runtime.error) {
+        console.log("Runtime error.");
+      }
+    });
+  })
+
 });
