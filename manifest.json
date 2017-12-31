@@ -1,13 +1,13 @@
 {
     "manifest_version": 2,
     "name": "Speedy Social Setup",
-    "description": "Making branding specialists' lives easier",
+    "description": "Set up multiple profiles faster!",
     "version": "1.0",
-    "homepage_url": "https://github.com/pat878",
+    "homepage_url": "https://github.com/Pat878/speedy_social_setup",
     "browser_action": {
-        "default_icon": "favicon.png",
+        "default_icon": "Speedy_Social_Setup.png",
         "default_popup": "popup.html",
-        "default_title": "FormFiller"
+        "default_title": "Speedy Social Setup"
     },
     "content_scripts": [{
         "matches": ["<all_urls>"],
