@@ -34,6 +34,36 @@ document.addEventListener("DOMContentLoaded", function() {
       profileLink = "http://www.linkedin.com"
     }
 
+    if (profileValue == "Slideshare") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "https://www.slideshare.net/w/signup/organization"
+    }
+
+    if (profileValue == "Levo") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "https://www.levo.com/join"
+    }
+
+    if (profileValue == "Behance") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "http://www.behance.net/signup"
+    }
+
+    if (profileValue == "Tumblr") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "http://www.tumblr.com"
+    }
+
+    if (profileValue == "Pinterest") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "https://www.pinterest.com"
+    }
+
   })
 
   //Open link on click
