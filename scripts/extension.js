@@ -5,8 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   document.body.onload = function() {
     chrome.storage.sync.get("data", function(items) {
       if (!chrome.runtime.error) {
-        document.getElementById("name").value = items.data[0];
-        document.getElementById("email").value = items.data[1];
+        document.getElementById("firstName").value = items.data[0];
+        document.getElementById("lastName").value = items.data[1];
+        document.getElementById("email").value = items.data[2];
       }
     });
   };
@@ -16,10 +17,23 @@ document.addEventListener("DOMContentLoaded", function() {
   var form = document.getElementById("profiles");
   form.addEventListener("change", function() {
     var profileValue = document.getElementById("profiles").value
+
+    if (profileValue == "") {
+      document.getElementById("link").innerHTML = ""
+    }
+
     if (profileValue == "Twitter") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " + profileValue + "</a>";
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
       profileLink = "http://www.twitter.com/signup"
     }
+
+    if (profileValue == "LinkedIn") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "http://www.linkedin.com"
+    }
+
   })
 
   //Open link on click
@@ -29,22 +43,23 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.tabs.create({ url: profileLink })
   })
 
+  //Create form variables and Listen for form click
+
   var button = document.getElementById("changelinks");
   button.addEventListener("click", function() {
     document.getElementById("status").textContent = "Clicked button!";
 
-    var name = document.getElementById("name").value;
+    var firstName = document.getElementById("firstName").value;
+    var lastName = document.getElementById("lastName").value;
     var email = document.getElementById("email").value;
-    var password = document.getElementById("password").value;
     var profile = document.getElementById("profiles");
     var selectedProfile = profile.options[profile.selectedIndex].value;
 
-    var data = [name, email, password, selectedProfile];
-    var savedData = [name, email];
+    var data = [firstName, lastName, email, selectedProfile];
 
-    //Store saved data (only username and email)
+    //Store saved data
 
-    chrome.storage.sync.set({ data: savedData }, function() {
+    chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
       }
@@ -64,11 +79,11 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var clear = document.getElementById("clear");
   clear.addEventListener("click", function() {
-    document.getElementById("name").value = "";
+    document.getElementById("firstName").value = "";
+    document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
-    document.getElementById("password").value = "";
 
-    data = ["", "", ""];
+    data = ["", "", "",""];
 
     chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
