@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("email").value = items.data.email;
       }
     });
+    chrome.storage.sync.get("profile", function(p) {
+      if (!chrome.runtime.error) {
+        document.getElementById("profiles").value = p.profile
+      }
+    });
   };
 
   //Show link based on user selection
@@ -100,7 +105,17 @@ document.addEventListener("DOMContentLoaded", function() {
 
   var link = document.getElementById("link")
   link.addEventListener("click", function(){
+
+    var profile = document.getElementById("profiles").value
+
+    chrome.storage.sync.set({ profile: profile }, function() {
+      if (chrome.runtime.error) {
+        console.log("Runtime error.");
+      }
+    });
+
     chrome.tabs.create({ url: profileLink })
+
   })
 
   //Create form variables and Listen for form click
@@ -136,16 +151,17 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   });
 
-  //Clear data from from and storage
+  //Clear data from form and storage
 
   var clear = document.getElementById("clear");
   clear.addEventListener("click", function() {
     document.getElementById("firstName").value = "";
     document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
+    document.getElementById("profiles").value = "";
 
     data = {firstName: "", lastName: "", email: "",
-      selectedProfile: ""};
+    selectedProfile: ""};
 
     chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
