@@ -40,7 +40,12 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
     case data[3] == "Pinterest":
     document.getElementById("email").value = data[2];
     break;
-  
+
+    case data[3] == "Wordpress":
+    document.getElementById("username").value = data[0] + data[1];
+    document.getElementById("email").value = data[2];
+    break;
+
   }
 
   //sendResponse({url: url, success: true});
