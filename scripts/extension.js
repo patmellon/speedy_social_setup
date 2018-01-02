@@ -5,9 +5,9 @@ document.addEventListener("DOMContentLoaded", function() {
   document.body.onload = function() {
     chrome.storage.sync.get("data", function(items) {
       if (!chrome.runtime.error) {
-        document.getElementById("firstName").value = items.data[0];
-        document.getElementById("lastName").value = items.data[1];
-        document.getElementById("email").value = items.data[2];
+        document.getElementById("firstName").value = items.data.firstName;
+        document.getElementById("lastName").value = items.data.lastName;
+        document.getElementById("email").value = items.data.email;
       }
     });
   };
@@ -115,7 +115,8 @@ document.addEventListener("DOMContentLoaded", function() {
     var profile = document.getElementById("profiles");
     var selectedProfile = profile.options[profile.selectedIndex].value;
 
-    var data = [firstName, lastName, email, selectedProfile];
+    var data = {firstName: firstName, lastName: lastName, email: email,
+      selectedProfile: selectedProfile};
 
     //Store saved data
 
@@ -143,7 +144,8 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
 
-    data = ["", "", "",""];
+    data = {firstName: "", lastName: "", email: "",
+      selectedProfile: ""};
 
     chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
