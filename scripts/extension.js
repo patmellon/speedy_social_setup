@@ -64,6 +64,36 @@ document.addEventListener("DOMContentLoaded", function() {
       profileLink = "https://www.pinterest.com"
     }
 
+    if (profileValue == "Wordpress") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = "https://wordpress.com/start"
+    }
+
+    if (profileValue == "Vimeo") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = ""
+    }
+
+    if (profileValue == "Strikingly") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = ""
+    }
+
+    if (profileValue == "Contently") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = ""
+    }
+
+    if (profileValue == "Reedsy") {
+      document.getElementById("link").innerHTML = "<a href=''>Visit " +
+      profileValue + "</a>";
+      profileLink = ""
+    }
+
   })
 
   //Open link on click
