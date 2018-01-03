@@ -3,15 +3,22 @@ document.addEventListener("DOMContentLoaded", function() {
 
   document.body.onload = function() {
     chrome.storage.sync.get("data", function(items) {
-      if (!chrome.runtime.error) {
-        document.getElementById("firstName").value = items.data.firstName;
-        document.getElementById("lastName").value = items.data.lastName;
-        document.getElementById("email").value = items.data.email;
-      }
-    });
-    chrome.storage.sync.get("profile", function(p) {
-      if (!chrome.runtime.error) {
-        document.getElementById("profiles").value = p.profile;
+      if (typeof items.data === "undefined") {
+        document.getElementById("firstName").value = "";
+        document.getElementById("lastName").value = "";
+        document.getElementById("email").value = "";
+        document.getElementById("profiles").value = "";
+      } else {
+        if (!chrome.runtime.error) {
+          document.getElementById("firstName").value = items.data.firstName;
+          document.getElementById("lastName").value = items.data.lastName;
+          document.getElementById("email").value = items.data.email;
+        }
+        chrome.storage.sync.get("profile", function(p) {
+          if (!chrome.runtime.error) {
+            document.getElementById("profiles").value = p.profile;
+          }
+        });
       }
     });
   };
