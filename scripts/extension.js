@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
   //Load saved input
 
   document.body.onload = function() {
@@ -12,101 +11,99 @@ document.addEventListener("DOMContentLoaded", function() {
     });
     chrome.storage.sync.get("profile", function(p) {
       if (!chrome.runtime.error) {
-        document.getElementById("profiles").value = p.profile
+        document.getElementById("profiles").value = p.profile;
       }
     });
   };
 
   //Show link based on user selection
-  var profileLink = ""
+  var profileLink = "";
   var form = document.getElementById("profiles");
   form.addEventListener("change", function() {
-    var profileValue = document.getElementById("profiles").value
+    var profileValue = document.getElementById("profiles").value;
 
     if (profileValue == "") {
-      document.getElementById("link").innerHTML = ""
+      document.getElementById("link").innerHTML = "";
     }
 
     if (profileValue == "Twitter") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "http://www.twitter.com/signup"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "http://www.twitter.com/signup";
     }
 
     if (profileValue == "LinkedIn") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "http://www.linkedin.com"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "http://www.linkedin.com";
     }
 
     if (profileValue == "Slideshare") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "https://www.slideshare.net/w/signup/organization"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "https://www.slideshare.net/w/signup/organization";
     }
 
     if (profileValue == "Levo") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "https://www.levo.com/join"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "https://www.levo.com/join";
     }
 
     if (profileValue == "Behance") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "http://www.behance.net/signup"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "http://www.behance.net/signup";
     }
 
     if (profileValue == "Tumblr") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "http://www.tumblr.com"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "http://www.tumblr.com";
     }
 
     if (profileValue == "Pinterest") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "https://www.pinterest.com"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "https://www.pinterest.com";
     }
 
     if (profileValue == "Wordpress") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = "https://wordpress.com/start"
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "https://wordpress.com/start";
     }
 
     if (profileValue == "Vimeo") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = ""
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "http://www.vimeo.com";
     }
 
     if (profileValue == "Strikingly") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = ""
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "";
     }
 
     if (profileValue == "Contently") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = ""
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "";
     }
 
     if (profileValue == "Reedsy") {
-      document.getElementById("link").innerHTML = "<a href=''>Visit " +
-      profileValue + "</a>";
-      profileLink = ""
+      document.getElementById("link").innerHTML =
+        "<a href=''>Visit " + profileValue + "</a>";
+      profileLink = "";
     }
-
-  })
+  });
 
   //Open link on click
 
-  var link = document.getElementById("link")
-  link.addEventListener("click", function(){
-
-    var profile = document.getElementById("profiles").value
+  var link = document.getElementById("link");
+  link.addEventListener("click", function() {
+    var profile = document.getElementById("profiles").value;
 
     chrome.storage.sync.set({ profile: profile }, function() {
       if (chrome.runtime.error) {
@@ -114,9 +111,8 @@ document.addEventListener("DOMContentLoaded", function() {
       }
     });
 
-    chrome.tabs.create({ url: profileLink })
-
-  })
+    chrome.tabs.create({ url: profileLink });
+  });
 
   //Create form variables and Listen for form click
 
@@ -130,8 +126,12 @@ document.addEventListener("DOMContentLoaded", function() {
     var profile = document.getElementById("profiles");
     var selectedProfile = profile.options[profile.selectedIndex].value;
 
-    var data = {firstName: firstName, lastName: lastName, email: email,
-      selectedProfile: selectedProfile};
+    var data = {
+      firstName: firstName,
+      lastName: lastName,
+      email: email,
+      selectedProfile: selectedProfile
+    };
 
     //Store saved data
 
@@ -160,14 +160,17 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("email").value = "";
     document.getElementById("profiles").value = "";
 
-    data = {firstName: "", lastName: "", email: "",
-    selectedProfile: ""};
+    data = {
+      firstName: "",
+      lastName: "",
+      email: "",
+      selectedProfile: ""
+    };
 
     chrome.storage.sync.set({ data: data }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
       }
     });
-  })
-
+  });
 });
