@@ -23,6 +23,16 @@ document.addEventListener("DOMContentLoaded", function() {
     });
   };
 
+  //Display instructions on mouseover and hide on mouseout.
+  var instructions = document.getElementById("instructions");
+  var instructionContent = document.getElementById("instructionContent");
+  instructions.addEventListener("mouseover", function() {
+    instructionContent.style.display = "block";
+  });
+  instructions.addEventListener("mouseout", function() {
+    instructionContent.style.display = "none";
+  });
+
   //Show link based on user selection
   var profileLink = "";
   var form = document.getElementById("profiles");
@@ -106,8 +116,7 @@ document.addEventListener("DOMContentLoaded", function() {
     }
   });
 
-  //Open link on click
-
+  //Open link on click and save the selection in storage.
   var link = document.getElementById("link");
   link.addEventListener("click", function() {
     var profile = document.getElementById("profiles").value;
@@ -121,7 +130,7 @@ document.addEventListener("DOMContentLoaded", function() {
     chrome.tabs.create({ url: profileLink });
   });
 
-  //Create form variables and Listen for form click
+  //Create form variables and Listen for form click.
 
   var button = document.getElementById("changelinks");
   button.addEventListener("click", function() {
