@@ -166,6 +166,7 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("lastName").value = "";
     document.getElementById("email").value = "";
     document.getElementById("profiles").value = "";
+    document.getElementById("link").innerHTML = "";
 
     data = {
       firstName: "",
@@ -174,7 +175,9 @@ document.addEventListener("DOMContentLoaded", function() {
       selectedProfile: ""
     };
 
-    chrome.storage.sync.set({ data: data }, function() {
+    var profile = "";
+
+    chrome.storage.sync.set({ data: data, profile: profile }, function() {
       if (chrome.runtime.error) {
         console.log("Runtime error.");
       }
