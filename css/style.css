@@ -23,3 +23,6 @@ body {
   overflow-x: hidden;
   max-width: 100%;
 }
+#instructionContent {
+  display: none;
+}
