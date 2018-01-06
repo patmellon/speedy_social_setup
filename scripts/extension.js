@@ -7,18 +7,21 @@ document.addEventListener("DOMContentLoaded", function() {
         document.getElementById("firstName").value = "";
         document.getElementById("lastName").value = "";
         document.getElementById("email").value = "";
-        document.getElementById("profiles").value = "";
       } else {
         if (!chrome.runtime.error) {
           document.getElementById("firstName").value = items.data.firstName;
           document.getElementById("lastName").value = items.data.lastName;
           document.getElementById("email").value = items.data.email;
         }
-        chrome.storage.sync.get("profile", function(p) {
-          if (!chrome.runtime.error) {
-            document.getElementById("profiles").value = p.profile;
-          }
-        });
+      }
+    });
+    chrome.storage.sync.get("profile", function(p) {
+      if (typeof p.profile === "undefined") {
+        document.getElementById("profiles").value = "";
+      } else {
+        if (!chrome.runtime.error) {
+          document.getElementById("profiles").value = p.profile;
+        }
       }
     });
   };
@@ -38,63 +41,116 @@ document.addEventListener("DOMContentLoaded", function() {
   var form = document.getElementById("profiles");
   form.addEventListener("change", function() {
     var profileValue = document.getElementById("profiles").value;
+    var link = document.getElementById("link");
+    var createAhref = document.createElement("a");
+    var text = document.createTextNode("Visit " + profileValue);
+    var initialText = document.createTextNode("");
 
     if (profileValue == "") {
-      document.getElementById("link").innerHTML = "";
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(initialText);
+      } else {
+        link.replaceChild(initialText, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Twitter") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "http://www.twitter.com/signup";
+      profileLink = "https://www.twitter.com/signup";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "LinkedIn") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "http://www.linkedin.com";
+      profileLink = "https://www.linkedin.com";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Slideshare") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
       profileLink = "https://www.slideshare.net/w/signup/organization";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Levo") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
       profileLink = "https://www.levo.com/join";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Behance") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "http://www.behance.net/signup";
+      profileLink = "https://www.behance.net/signup";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Tumblr") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "http://www.tumblr.com";
+      profileLink = "https://www.tumblr.com";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Pinterest") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
       profileLink = "https://www.pinterest.com";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Wordpress") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
       profileLink = "https://wordpress.com/start";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Vimeo") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "http://www.vimeo.com";
+      profileLink = "https://www.vimeo.com";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Strikingly") {
