@@ -154,21 +154,36 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 
     if (profileValue == "Strikingly") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "";
+      profileLink = "https://www.strikingly.com/";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Contently") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "";
+      profileLink = "https://contently.com/register";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
 
     if (profileValue == "Reedsy") {
-      document.getElementById("link").innerHTML =
-        "<a href=''>Visit " + profileValue + "</a>";
-      profileLink = "";
+      profileLink = "https://reedsy.com/";
+      createAhref.setAttribute("href", profileLink);
+      createAhref.appendChild(text);
+      if (typeof link.childNodes[0] === "undefined") {
+        link.appendChild(createAhref);
+      } else {
+        link.replaceChild(createAhref, link.childNodes[0]);
+      }
     }
   });
 
