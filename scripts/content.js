@@ -54,6 +54,20 @@ chrome.runtime.onMessage.addListener(function(request, sender, sendResponse) {
         data.firstName + " " + data.lastName;
       document.getElementById("signup_email").value = data.email;
       break;
+
+    case data.selectedProfile == "Strikingly":
+      document.getElementById("user_profile_attributes_first_name").value =
+        data.firstName;
+      document.getElementById("user_email").value = data.email;
+      break;
+
+    case data.selectedProfile == "Contently":
+      document.getElementById("user_email").value = data.email;
+      break;
+
+    case data.selectedProfile == "Reedsy":
+      document.getElementById("user_email").value = data.email;
+      break;
   }
 
   //sendResponse({url: url, success: true});
