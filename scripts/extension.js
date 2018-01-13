@@ -216,7 +216,7 @@ document.addEventListener("DOMContentLoaded", function() {
     var data = {
       firstName: firstName,
       lastName: lastName,
-      email: email,
+      email: email.toLowerCase(),
       selectedProfile: selectedProfile
     };
 
